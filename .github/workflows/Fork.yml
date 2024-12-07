@@ -1,0 +1,67 @@
+# 2024-12-08 00:04:25
+
+name: Record & Fork
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 * * * *"
+
+permissions:
+  actions: write  
+  contents: write  
+
+
+
+jobs:
+  ForkRepository:
+    runs-on: ubuntu-latest
+    env:
+      TZ: 'Asia/Shanghai'
+    
+    steps: 
+    - name: 验证目标存储库
+      uses: actions/checkout@v4.2.2
+      with:
+        repository: Moli-X/TelegramBot
+        path: TelegramBot-repo
+
+
+
+    
+###### Fork
+
+    - name: 备份原始文件到Record
+      run: |
+        mkdir -p TelegramBot/.github/Record
+        curl -L -o TelegramBot-repo/.github/Record/worker.yml "https://github.com/LloydAsp/nfd/raw/main/worker.js"
+        curl -L -o TelegramBot-repo/.github/Record/fraud.db "https://github.com/LloydAsp/nfd/raw/main/data/fraud.db"
+
+    - name: 复刻原始文件Fraud数据
+      run: |
+        mkdir -p TelegramBot/Date
+        curl -L -o TelegramBot-repo/Date/Fraud.db "https://github.com/LloydAsp/nfd/raw/main/data/fraud.db"
+       
+
+       
+###### Commit
+    - name: 添加Commits
+      run: |
+        cd TelegramBot-repo
+        if [[ -n $(git status -s) ]]; then
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update $(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M')"
+          git push origin HEAD
+        else
+          echo "No changes to commit."
+        fi
+
+
+    - name: 清理Workflow
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        token: ${{ secrets.PAT_TOKEN }} 
+        retain_days: 0
+        keep_minimum_runs: 2
