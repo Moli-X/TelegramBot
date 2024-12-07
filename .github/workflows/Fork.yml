@@ -34,7 +34,7 @@ jobs:
     - name: 备份原始文件到Record
       run: |
         mkdir -p TelegramBot/.github/Record
-        curl -L -o TelegramBot-repo/.github/Record/worker.yml "https://github.com/LloydAsp/nfd/raw/main/worker.js"
+        curl -L -o TelegramBot-repo/.github/Record/worker.js "https://github.com/LloydAsp/nfd/raw/main/worker.js"
         curl -L -o TelegramBot-repo/.github/Record/fraud.db "https://github.com/LloydAsp/nfd/raw/main/data/fraud.db"
 
     - name: 复刻原始文件Fraud数据
