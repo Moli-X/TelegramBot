@@ -1,5 +1,5 @@
 /**
- *测试
+ *基于https://github.com/LloydAsp/nfd/blob/main/worker.js修改
  */
 const TOKEN = ENV_BOT_TOKEN // Get it from @BotFather
 const WEBHOOK = '/endpoint'
