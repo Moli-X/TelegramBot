@@ -8,7 +8,7 @@ const SECRET = ENV_BOT_SECRET // A-Z, a-z, 0-9, _ and -
 const ADMIN_UID = ENV_ADMIN_UID // your user id, get it from https://t.me/username_to_id_bot
 
 const NOTIFY_INTERVAL = 3600 * 1000;
-const fraudDb = 'https://github.com/Moli-X/TelegramBot/blob/main/Date/Fraud.db';
+const fraudDb = 'https://github.com/Moli-X/TelegramBot/raw/main/Date/Fraud.db';
 const notificationUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/Notification.txt'
 const startMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/StartMessage.md';
 const ConfigMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/ConfigMessage.md';  // 配置文件链接
