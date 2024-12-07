@@ -5,7 +5,7 @@ name: Record & Fork
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "30 0 * * *"
 
 permissions:
   actions: write  
