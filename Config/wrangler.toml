@@ -3,7 +3,7 @@ name = "telegrambot6868"
 main = "Script/Worker.js"
 compatibility_date = "2022-07-12"
 
-workers_dev = false
+workers_dev = true
 route = { pattern = "example.org/*", zone_name = "example.org" }
 
 kv_namespaces = [
