@@ -39,8 +39,8 @@ jobs:
 
     - name: 复刻原始文件Fraud数据
       run: |
-        mkdir -p TelegramBot/Date
-        curl -L -o TelegramBot-repo/Date/Fraud.db "https://github.com/LloydAsp/nfd/raw/main/data/fraud.db"
+        mkdir -p TelegramBot/Data
+        curl -L -o TelegramBot-repo/Data/Fraud.db "https://github.com/LloydAsp/nfd/raw/main/data/fraud.db"
        
 
        
