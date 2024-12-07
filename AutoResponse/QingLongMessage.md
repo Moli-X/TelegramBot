@@ -5,7 +5,7 @@
 
 ▎代挂群组：[点击进入](https://t.me/littlerabbit1220)
 
-▎方法② Littlerabbit登录：[点击登录](http://yado.top:5701/}
+▎方法② Littlerabbit登录：[点击登录](http://yado.top:5701/)
 
 ▎方法③ 机器人QQ：[直接跳转添加（可登录，查询）](https://ti.qq.com/open_qq/index2.html?url=mqqapi%3A%2F%2Fuserprofile%2Ffriend_profile_card%3Fsrc_type%3Dweb%26version%3D1.0%26source%3D2%26uin%3D1924365924)
 
