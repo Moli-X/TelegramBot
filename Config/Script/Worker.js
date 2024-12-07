@@ -131,7 +131,7 @@ async function onMessage (message) {
   
       return sendMessage({
         chat_id: message.chat.id,
-        text: QinglongMsg // 回复从ConfigMsgUrl获取的完整内容
+        text: QinglongMsg // 回复从QinglongMsg获取的完整内容
       })
     }
 
@@ -143,7 +143,7 @@ async function onMessage (message) {
 
     return sendMessage({
       chat_id: message.chat.id,
-      text: CredentialMsg // 回复从ConfigMsgUrl获取的完整内容
+      text: CredentialMsg // 回复从CredentialMsg获取的完整内容
     })
   }
 
