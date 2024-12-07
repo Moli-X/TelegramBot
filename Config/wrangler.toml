@@ -3,17 +3,10 @@ name = "telegrambot6868"
 main = "Script/Worker.js"
 compatibility_date = "2022-07-12"
 
-workers_dev = true
-route = { pattern = "example.org/*", zone_name = "example.org" }
+
 
 kv_namespaces = [
   { binding = "nfd", id = "ec74622a23ec4ad8aa031a02c19eb720" }
 ]
 
-[env.staging]
-name = "my-worker-staging"
-route = { pattern = "staging.example.org/*", zone_name = "example.org" }
 
-kv_namespaces = [
-  { binding = "nfd", id = "ec74622a23ec4ad8aa031a02c19eb720" }
-]
