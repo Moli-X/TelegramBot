@@ -1,4 +1,4 @@
-# NFD
+# TelegramBot-NFD
 No Fraud / Node Forward Bot
 [原仓库](https://github.com/LloydAsp/nfd)
 一个基于cloudflare worker的telegram 消息转发bot，集成了反欺诈功能
