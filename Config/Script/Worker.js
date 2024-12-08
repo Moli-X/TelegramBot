@@ -1,6 +1,7 @@
 
 /**
  *基于https://github.com/LloydAsp/nfd/blob/main/worker.js修改
+ *查看部署:https://dash.cloudflare.com/ce325b2393d60e40c800e4fb10f8bcf3/workers/services/edit/telegrambot6868/production
  */
 const TOKEN = ENV_BOT_TOKEN // Get it from @BotFather
 const WEBHOOK = '/endpoint'
