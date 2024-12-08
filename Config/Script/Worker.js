@@ -12,10 +12,10 @@ const NOTIFY_INTERVAL = 3600 * 1000;
 const fraudDb = 'https://github.com/Moli-X/TelegramBot/raw/main/Date/Fraud.db';
 const notificationUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/Notification.txt';
 const startMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/StartMessage.md';
-const configMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/ConfigMessage.md';  // 配置文件链接
-const qinglongMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/QingLongMessage.md';  // 配置文件链接
-const credentialMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/CredentialMessage.md';  // 配置文件链接
-const githubMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/GitHubMessage.md';  // 配置文件链接
+const configMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/ConfigMessage.md';  // 懒人配置自动回复内容链接
+const qinglongMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/QingLongMessage.md';  // 青龙代挂自动回复内容链接
+const credentialMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/CredentialMessage.md';  // 证书自动回复内容链接
+const githubMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/GitHubMessage.md';  // GitHub仓库自动回复链接
 
 
 const enable_notification = false
