@@ -9,12 +9,12 @@ const ADMIN_UID = ENV_ADMIN_UID // your user id, get it from https://t.me/userna
 
 const NOTIFY_INTERVAL = 3600 * 1000;
 const fraudDb = 'https://github.com/Moli-X/TelegramBot/raw/main/Date/Fraud.db';
-const notificationUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/Notification.txt'
+const notificationUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/Notification.txt';
 const startMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/StartMessage.md';
-const ConfigMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/ConfigMessage.md';  // 配置文件链接
-const QinglongMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/QingLongMessage.md';  // 配置文件链接
-const CredentialMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/CredentialMessage.md';  // 配置文件链接
-const GitHubMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/GitHubMessage.md';  // 配置文件链接
+const configMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/ConfigMessage.md';  // 配置文件链接
+const qinglongMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/QingLongMessage.md';  // 配置文件链接
+const credentialMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/CredentialMessage.md';  // 配置文件链接
+const githubMsgUrl = 'https://github.com/Moli-X/TelegramBot/raw/main/AutoResponse/GitHubMessage.md';  // 配置文件链接
 
 
 const enable_notification = false
@@ -116,18 +116,18 @@ async function onMessage (message) {
   // 使用正则表达式匹配“配置文件”或“懒人配置”
   if (message.text && /配置文件|懒人配置/i.test(message.text)) {
     // 获取配置文件的内容
-    let configMsg = await fetch(ConfigMsgUrl).then(r => r.text());
+    let configMsg = await fetch(configMsgUrl).then(r => r.text());
 
     return sendMessage({
       chat_id: message.chat.id,
-      text: configMsg // 回复从ConfigMsgUrl获取的完整内容
+      text: configMsg // 回复从configMsgUrl获取的完整内容
     })
   }
 
     // 使用正则表达式匹配“青龙代挂”或“青龙”
     if (message.text && /青龙代挂|青龙/i.test(message.text)) {
       // 获取配置文件的内容
-      let QinglongMsg = await fetch(QinglongMsgUrl).then(r => r.text());
+      let QinglongMsg = await fetch(qinglongMsgUrl).then(r => r.text());
   
       return sendMessage({
         chat_id: message.chat.id,
@@ -139,7 +139,7 @@ async function onMessage (message) {
   // 使用正则表达式匹配“证书购买”或“证书”
   if (message.text && /证书购买|证书/i.test(message.text)) {
     // 获取配置文件的内容
-    let CredentialMsg = await fetch(CredentialMsgUrl).then(r => r.text());
+    let CredentialMsg = await fetch(credentialMsgUrl).then(r => r.text());
 
     return sendMessage({
       chat_id: message.chat.id,
@@ -151,11 +151,11 @@ async function onMessage (message) {
   // 使用正则表达式匹配“配置文件”或“懒人配置”
   if (message.text && /仓库地址|仓库/i.test(message.text)) {
     // 获取配置文件的内容
-    let GitHubMsg = await fetch(GitHubMsgUrl).then(r => r.text());
+    let GitHubMsg = await fetch(githubMsgUrl).then(r => r.text());
 
     return sendMessage({
       chat_id: message.chat.id,
-      text: GitHubMsg // 回复从ConfigMsgUrl获取的完整内容
+      text: GitHubMsg // 回复从GitHubMsgUrl获取的完整内容
     })
   }
 
