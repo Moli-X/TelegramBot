@@ -8,9 +8,9 @@ No Fraud / Node Forward Bot
 
 - 基于cloudflare worker搭建，能够实现以下效果
   - 搭建成本低，一个js文件即可完成搭建
-    - 不需要额外的域名，利用worker自带域名即可
-    - 基于worker kv实现永久数据储存
-    - 稳定，全球cdn转发
+  - 不需要额外的域名，利用worker自带域名即可
+  - 基于worker kv实现永久数据储存
+  - 稳定，全球cdn转发
 - 接入反欺诈系统，当聊天对象有诈骗历史时，自动发出提醒
 - 支持屏蔽用户，避免被骚扰
 
