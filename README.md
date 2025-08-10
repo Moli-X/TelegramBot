@@ -25,21 +25,19 @@ No Fraud / Node Forward Bot
     - 增加一个`ENV_BOT_SECRET`变量，数值为从步骤2中获得的secret
     - 增加一个`ENV_ADMIN_UID`变量，数值为从步骤3中获得的用户id
 6. 绑定KV数据库，在设置 -> 变量，下滑找到KV 命名空间绑定：telegrambot -> telegrambot
-7. 点击`Quick Edit`，复制[这个文件](./Config/Script/Worker.js)到编辑器中
+7. 点击`Quick Edit`，复制[这个文件](https://github.com/Moli-X/TelegramBot/raw/main/Bot.js)到编辑器中
 8. 通过打开`https://xxx.workers.dev/registerWebhook`来注册websoket
 
 ## 使用方法
 
 - 当其他用户给bot发消息，会被转发到bot创建者
 - 用户回复普通文字给转发的消息时，会回复到原消息发送者
-- 用户回复`/block`, `/unblock`, `/checkblock`等命令会执行相关指令，**不会**回复到原消息发送者
 
 ## 欺诈数据源
 
-- 文件[Fraud.db](./Data/Fraud.db)为欺诈数据，格式为每行一个uid
-- 可以通过pr扩展本数据，也可以通过提issue方式补充
-- 提供额外欺诈信息时，需要提供一定的消息出处
+
 
 ## Thanks
 
 - [telegram-bot-cloudflare](https://github.com/cvzi/telegram-bot-cloudflare)
+- [zhpengfei](https://zhpengfei.com/how-to-create-your-own-telegram-bot/#aioseo-cloudflare-workertelegram)
