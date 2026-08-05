@@ -7,6 +7,8 @@ const TOKEN = ENV_BOT_TOKEN // Get it from @BotFather
 const WEBHOOK = '/endpoint'
 const SECRET = ENV_BOT_SECRET // A-Z, a-z, 0-9, _ and -
 const ADMIN_UID = ENV_ADMIN_UID // your user id, get it from https://t.me/username_to_id_bot
+const REQUIRED_CHANNEL = '@QuantX'
+const REQUIRED_CHANNEL_URL = 'https://t.me/QuantX'
 
 const NOTIFY_INTERVAL = 3600 * 1000;
 const fraudDb = 'https://github.com/Moli-X/TelegramBot/raw/main/Date/Fraud.db';
@@ -106,6 +108,13 @@ async function onUpdate (update) {
  * https://core.telegram.org/bots/api#message
  */
 async function onMessage (message) {
+  if(message.chat.id.toString() !== ADMIN_UID){
+    const membership = await getRequiredChannelMembership(message.from.id)
+    if(membership !== true){
+      return sendChannelRequirement(message.chat.id, membership === null)
+    }
+  }
+
   if(message.text === '/start'){
     let startMsg = await fetch(startMsgUrl).then(r => r.text())
     return sendMessage({
@@ -188,6 +197,40 @@ async function onMessage (message) {
     })
   }
   return handleGuestMessage(message)
+}
+
+function hasActiveChannelMembership(chatMember){
+  return ['creator', 'administrator', 'member'].includes(chatMember.status) ||
+    (chatMember.status === 'restricted' && chatMember.is_member === true)
+}
+
+async function getRequiredChannelMembership(userId){
+  try {
+    const result = await requestTelegram('getChatMember', makeReqBody({
+      chat_id: REQUIRED_CHANNEL,
+      user_id: userId
+    }))
+    if(!result.ok){
+      console.error('getChatMember failed:', JSON.stringify(result))
+      return null
+    }
+    return hasActiveChannelMembership(result.result)
+  } catch(error) {
+    console.error('getChatMember request failed:', error)
+    return null
+  }
+}
+
+function sendChannelRequirement(chatId, verificationFailed = false){
+  return sendMessage({
+    chat_id: chatId,
+    text: verificationFailed
+      ? '暂时无法验证频道关注状态，请稍后重新发送消息。'
+      : '请先关注频道 @QuantX，关注完成后返回这里重新发送消息。',
+    reply_markup: {
+      inline_keyboard: [[{ text: '📢 关注 @QuantX', url: REQUIRED_CHANNEL_URL }]]
+    }
+  })
 }
 
 async function handleGuestMessage(message){
