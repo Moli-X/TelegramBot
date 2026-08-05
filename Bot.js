@@ -2,6 +2,8 @@ const TOKEN = ENV_BOT_TOKEN;
 const WEBHOOK = '/endpoint';
 const SECRET = ENV_BOT_SECRET;
 const ADMIN_UID = ENV_ADMIN_UID;
+const REQUIRED_CHANNEL = '@QuantX';
+const REQUIRED_CHANNEL_URL = 'https://t.me/QuantX';
 const KV_NAMESPACE = telegrambot;
 const LAST_USER_KEY = 'last_user';
 const USER_MESSAGES_KEY_PREFIX = 'user_message_';
@@ -40,6 +42,14 @@ async function onUpdate(update) {
 async function onMessage(message) {
   const chatId = message.chat.id;
   const userName = message.from.username ? `@${message.from.username}` : message.from.first_name;
+
+  if (chatId != ADMIN_UID) {
+    const membership = await getRequiredChannelMembership(message.from.id);
+    if (membership !== true) {
+      await sendChannelRequirement(chatId, membership === null);
+      return;
+    }
+  }
 
   if (chatId == ADMIN_UID) {
     // 管理员消息处理
@@ -151,6 +161,48 @@ async function onMessage(message) {
 
 function apiUrl(methodName) {
   return `https://api.telegram.org/bot${TOKEN}/${methodName}`;
+}
+
+function hasActiveChannelMembership(chatMember) {
+  return ['creator', 'administrator', 'member'].includes(chatMember.status) ||
+    (chatMember.status === 'restricted' && chatMember.is_member === true);
+}
+
+async function getRequiredChannelMembership(userId) {
+  try {
+    const response = await fetch(apiUrl('getChatMember'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: REQUIRED_CHANNEL, user_id: userId })
+    });
+    const result = await response.json();
+    if (!result.ok) {
+      console.error('getChatMember failed:', JSON.stringify(result));
+      return null;
+    }
+    return hasActiveChannelMembership(result.result);
+  } catch (error) {
+    console.error('getChatMember request failed:', error);
+    return null;
+  }
+}
+
+async function sendChannelRequirement(chatId, verificationFailed = false) {
+  const text = verificationFailed
+    ? '暂时无法验证频道关注状态，请稍后重新发送消息。'
+    : '请先关注频道 @QuantX，关注完成后返回这里重新发送消息。';
+  const response = await fetch(apiUrl('sendMessage'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text,
+      reply_markup: {
+        inline_keyboard: [[{ text: '📢 关注 @QuantX', url: REQUIRED_CHANNEL_URL }]]
+      }
+    })
+  });
+  return response.json();
 }
 
 async function sendPlainText(chatId, text) {
